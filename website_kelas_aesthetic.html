@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Webkelas Premium</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(135deg,#00c6ff,#0072ff);
+  color:#333;
+}
+
+.header {
+  background:rgba(255,255,255,0.15);
+  backdrop-filter:blur(10px);
+  padding:20px;
+  text-align:center;
+  color:white;
+  font-size:22px;
+  font-weight:600;
+}
+
+.container {
+  max-width:1000px;
+  margin:auto;
+  padding:20px;
+}
+
+.card {
+  background:white;
+  padding:20px;
+  margin:15px 0;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+  transition:0.3s;
+}
+
+.card:hover {
+  transform:translateY(-5px);
+}
+
+.button {
+  background:#0072ff;
+  color:white;
+  border:none;
+  padding:10px;
+  border-radius:10px;
+  width:100%;
+  margin-top:10px;
+  cursor:pointer;
+}
+
+input {
+  width:100%;
+  padding:10px;
+  margin:5px 0;
+  border-radius:10px;
+  border:1px solid #ccc;
+}
+
+.nav {
+  position:fixed;
+  bottom:0;
+  width:100%;
+  background:white;
+  display:flex;
+  justify-content:space-around;
+  padding:10px;
+  box-shadow:0 -2px 10px rgba(0,0,0,0.1);
+}
+
+.nav button {
+  background:none;
+  border:none;
+  font-size:14px;
+}
+
+.page {display:none}
+.active {display:block}
+
+.chat-msg {
+  background:#e3f2fd;
+  padding:8px;
+  border-radius:10px;
+  margin:5px 0;
+}
+
+</style>
+</head>
+<body>
+
+<div class="header">📱 Webkelas Premium - Kelas 4B</div>
+
+<div class="container">
+
+<!-- LOGIN -->
+<div id="login" class="card page active">
+<h3>Login</h3>
+<input id="email" placeholder="Email">
+<input id="password" placeholder="Password" type="password">
+<button class="button" onclick="login()">Masuk</button>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard" class="page">
+
+<div class="card">
+<h3>📊 Ranking</h3>
+<div id="ranking"></div>
+</div>
+
+<div class="card">
+<h3>💬 Chat</h3>
+<div id="chatBox"></div>
+<input id="chatInput" placeholder="Tulis pesan">
+<button class="button" onclick="kirimChat()">Kirim</button>
+</div>
+
+<div class="card">
+<h3>📅 Absensi</h3>
+<button class="button" onclick="absen('hadir')">Hadir</button>
+<button class="button" onclick="absen('izin')">Izin</button>
+<button class="button" onclick="absen('sakit')">Sakit</button>
+</div>
+
+<div class="card">
+<h3>📄 Raport</h3>
+<button class="button" onclick="cetakRaport()">Download PDF</button>
+</div>
+
+</div>
+
+</div>
+
+<!-- NAVIGATION -->
+<div class="nav">
+<button onclick="show('dashboard')">Home</button>
+<button onclick="show('login')">Logout</button>
+</div>
+
+<script>
+function show(id){
+ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+}
+
+function login(){
+ show('dashboard');
+}
+
+function kirimChat(){
+ let msg = document.getElementById('chatInput').value;
+ let box = document.getElementById('chatBox');
+ box.innerHTML += `<div class='chat-msg'>${msg}</div>`;
+ chatInput.value="";
+}
+
+function absen(status){
+ alert("Absensi: " + status);
+}
+
+function cetakRaport(){
+ alert("Download raport...");
+}
+</script>
+
+</body>
+</html>
